@@ -1,0 +1,41 @@
+Items:
+  Hider_all:
+    Material: 'GLOWSTONE_DUST'
+    Name: '§aAlle'
+    Lore: 'Rechtsklick, um ausschließliich Vip zu sehen'
+    Slot: 2
+  Hider_vip:
+    Material: 'REDSTONE'
+    Name: '§6VIP'
+    Lore: 'Rechtsklick, um niemanden zu sehen'
+    Slot: 2
+  Hider_non:
+    Material: 'SULPHUR'
+    Name: '§cNiemand'
+    Lore: 'Rechtsklick, um alle zu sehen'
+    Slot: 2
+  Warp:
+    Material: 'COMPASS'
+    Name: 'Warp'
+    Lore: 'Rechtsklick um Inventar zu öffnen'
+    Slot: 1
+  Shield_on:
+    Material: 'EYE_OF_ENDER'
+    Name: 'Shield on'
+    Lore: 'Rechtsklick, um Shield auszuschalten'
+    Slot: 3
+  Shield_off:
+    Material: 'ENDER_PEARL'
+    Name: 'Shield off'
+    Lore: 'Rechtsklick, um Shield zu aktivieren'
+    Slot: 3
+  Silent:
+    Material: 'TNT'
+    Name: 'Silentlobby'
+    Lore: 'Rechtsklick um zur Silentlobby zu gehen'
+    Slot: 4
+
+DenyTasks:
+  DropItems: true
+  TakeItems: true
+  MoveItems: true
