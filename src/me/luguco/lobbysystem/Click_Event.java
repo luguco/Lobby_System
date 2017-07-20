@@ -1,6 +1,7 @@
 package me.luguco.lobbysystem;
 
 import org.bukkit.Bukkit;
+import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -8,13 +9,15 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Created by Andreas on 13.07.2017.
+ * Created by luguco on 13.07.2017.
  */
 public class Click_Event implements Listener {
 
@@ -101,6 +104,25 @@ public class Click_Event implements Listener {
 
             if(m == Material.getMaterial(plugin.getConfig().getString("Items.Warp.Material"))){
                 e.setCancelled(true);
+
+                Inventory warps = Bukkit.createInventory(p, 54, plugin.getConfig().getString("Warps.Invname"));
+
+                ItemStack is = new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.BLUE.getDyeData());
+                ItemMeta im = is.getItemMeta();
+                im.setDisplayName("Placeholder");
+                List<String> lore = new ArrayList<String>();
+                lore.add("");
+                im.setLore(lore);
+                is.setItemMeta(im);
+                warps.setItem(15, new ItemStack(Material.COMPASS, 1));
+                ItemStack[] items = warps.getContents();
+                for(int i = 0; i < 54; i++){
+
+                    if((items[i] == null || items[i].getType() == Material.AIR)) {
+                        warps.setItem(i, is);
+                    }
+                }
+                p.openInventory(warps);
                 return;
             }
 

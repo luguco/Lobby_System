@@ -39,3 +39,15 @@ DenyTasks:
   DropItems: true
   TakeItems: true
   MoveItems: true
+
+Warps:
+  Invname: "Teleporter"
+  Fillerblock:
+    Material: 'STAINED_GLASS_PANE'
+    Color: ""
+
+  '1':
+    Material: ''
+    Name: ''
+    Lore: ''
+    Slot: ''

@@ -8,7 +8,7 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 
 /**
- * Created by Andreas on 14.07.2017.
+ * Created by luguco on 14.07.2017.
  */
 public class DenyTasks implements Listener {
     private Main plugin;

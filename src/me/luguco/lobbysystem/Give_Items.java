@@ -11,7 +11,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 
 /**
- * Created by Andreas on 14.07.2017.
+ * Created by luguco on 14.07.2017.
  */
 public class Give_Items implements Listener {
     private Main plugin;

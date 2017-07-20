@@ -6,7 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.ArrayList;
 
 /**
- * Created by Andreas on 13.07.2017.
+ * Created by luguco on 13.07.2017.
  */
 public class Main extends JavaPlugin{
 
