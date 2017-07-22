@@ -22,6 +22,7 @@ public class Main extends JavaPlugin{
         new Click_Event(this);
         new Give_Items(this);
         new DenyTasks(this);
+        registerCommands();
         defaultCfg();
     }
 
@@ -33,5 +34,10 @@ public class Main extends JavaPlugin{
     public void defaultCfg(){
         getConfig().options().copyDefaults(true);
         saveConfig();
+    }
+
+    private void registerCommands(){
+        Warp cwarp = new Warp(this);
+        getCommand("warp").setExecutor(cwarp);
     }
 }

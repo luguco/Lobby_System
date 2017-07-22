@@ -2,3 +2,8 @@ name: Lobby_System
 version: 1.0
 author: luguco
 main: me.luguco.lobbysystem.Main
+
+commands:
+  warp:
+    description: Set/delete a warp
+    usage: /warp <set|delete> <name>

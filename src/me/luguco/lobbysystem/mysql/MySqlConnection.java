@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * Created by Andreas on 14.07.2017.
+ * Created by luguco on 14.07.2017.
  */
 public class MySqlConnection {
 
