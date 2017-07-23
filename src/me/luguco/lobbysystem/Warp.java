@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 public class Warp implements CommandExecutor{
 
     private int i;
+    private int i2;
     private Main plugin;
     public Warp(Main main) {
         this.plugin = main;
@@ -37,6 +38,10 @@ public class Warp implements CommandExecutor{
                 return true;
             }
             Material m = p.getItemInHand().getType();
+            if(m.equals(Material.AIR)){
+                p.sendMessage("§cDas Item darf nicht Air sein!");
+                return true;
+            }
             String material = m.toString();
             material.replace("!!org.bukkit.Material ", "");
 
@@ -70,7 +75,36 @@ public class Warp implements CommandExecutor{
             }
             p.sendMessage("§aEin warp wurde an deiner Stelle mit dem Namen " + name + " und dem Item " + material + " erstellt.");
             p.sendMessage("§aGehe in die Config um weitere Einstellungen zu teffen.");
-        }
+        }else
+            if(args[0].equalsIgnoreCase("delete")){
+
+                if(!p.hasPermission("lobby.deletewarp")){
+                    p.sendMessage("§cDu hast keine Rechte, um diesen command zu benutzen!");
+                    return true;
+                }
+
+                String todelete = args[1];
+
+                for( i2 = 1; i2 < 54; i2++){
+                    p.sendMessage("check");
+                    if(plugin.getConfig().contains("Warps." + i2)){
+                        p.sendMessage("got" + i2);
+                        String name = plugin.getConfig().getString("Warps." + i2 + ".Name");
+                        if(todelete.equalsIgnoreCase(name)){
+                            p.sendMessage("delete" + i2);
+                            plugin.getConfig().set("Warps." + i2, null);
+                            plugin.saveConfig();
+                            i2 = 99;
+                        }
+                    }
+                }
+                if(!(i2 >= 55)){
+                    p.sendMessage("§cEs existiert kein Warp mit dem Namen " + todelete);
+                    return true;
+                }
+
+                p.sendMessage("§aDer Warp " + todelete + " wurde erfolgreich gelöscht!");
+            }
         return true;
     }
 }

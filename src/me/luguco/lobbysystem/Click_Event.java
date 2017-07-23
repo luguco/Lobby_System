@@ -1,12 +1,11 @@
 package me.luguco.lobbysystem;
 
-import org.bukkit.Bukkit;
-import org.bukkit.DyeColor;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.Inventory;
@@ -21,6 +20,7 @@ import java.util.List;
  */
 public class Click_Event implements Listener {
 
+    private int i;
     private Main plugin;
     public Click_Event(Main main) {
         this.plugin = main;
@@ -107,14 +107,39 @@ public class Click_Event implements Listener {
 
                 Inventory warps = Bukkit.createInventory(p, 54, plugin.getConfig().getString("Warps.Invname"));
 
-                ItemStack is = new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.BLUE.getDyeData());
+                String c = plugin.getConfig().getString("Warps.Fillerblock.Color");
+                ItemStack is = new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.valueOf(c).getDyeData());
                 ItemMeta im = is.getItemMeta();
                 im.setDisplayName("Placeholder");
-                List<String> lore = new ArrayList<String>();
+                List<String> lore = new ArrayList<>();
                 lore.add("");
                 im.setLore(lore);
                 is.setItemMeta(im);
-                warps.setItem(15, new ItemStack(Material.COMPASS, 1));
+
+
+
+                for(int i = 1; i < 54; i++){
+
+                    if(plugin.getConfig().contains("Warps." + i)){
+                        String name = plugin.getConfig().getString("Warps." + i + ".Name");
+                        String material = plugin.getConfig().getString("Warps." + i + ".Material");
+                        String ilore = plugin.getConfig().getString("Warps." + i + ".Lore");
+                        int slot = plugin.getConfig().getInt("Warps." + i + ".Slot");
+
+                        ItemStack ist = new ItemStack(Material.getMaterial(material), 1);
+                        ItemMeta ima = ist.getItemMeta();
+                        ima.setDisplayName(name);
+                        List<String> loreend = new ArrayList<>();
+                        loreend.add(ilore);
+                        ima.setLore(loreend);
+                        ist.setItemMeta(ima);
+
+                        warps.setItem(slot, ist);
+                    }
+
+                }
+
+
                 ItemStack[] items = warps.getContents();
                 for(int i = 0; i < 54; i++){
 
@@ -155,6 +180,31 @@ public class Click_Event implements Listener {
                 if(plugin.seevip.contains(players.getName()) &&  !e.getPlayer().hasPermission("lobby.vip")){
                     players.hidePlayer(e.getPlayer());
 
+            }
+        }
+    }
+
+    @EventHandler
+    public void clickWarp(InventoryClickEvent e){
+        Player p = (Player) e.getWhoClicked();
+        int slot = e.getSlot();
+
+        for(i = 1; i < 54; i++){
+            if(plugin.getConfig().contains("Warps." + i)){
+                int compare = plugin.getConfig().getInt("Warps." + i + ".Slot");
+
+                if(slot == compare){
+
+                    double x = plugin.getConfig().getDouble("Warps." + i + ".X");
+                    double y = plugin.getConfig().getDouble("Warps." + i + ".Y");
+                    double z = plugin.getConfig().getDouble("Warps." + i + ".Z");
+                    float yaw = (float) plugin.getConfig().getDouble("Warps." + i + ".Yaw");
+                    float pitch = (float) plugin.getConfig().getDouble("Warps." + i + ".Pitch");
+                    Location loc = new Location(p.getWorld(), x, y, z, yaw, pitch);
+
+                    p.teleport(loc);
+                    i = 99;
+                }
             }
         }
     }
