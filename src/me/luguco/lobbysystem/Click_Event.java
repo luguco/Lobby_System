@@ -105,7 +105,7 @@ public class Click_Event implements Listener {
             if(m == Material.getMaterial(plugin.getConfig().getString("Items.Warp.Material"))){
                 e.setCancelled(true);
 
-                Inventory warps = Bukkit.createInventory(p, 54, plugin.getConfig().getString("Warps.Invname"));
+                Inventory warps = Bukkit.createInventory(p, 45, plugin.getConfig().getString("Warps.Invname"));
 
                 String c = plugin.getConfig().getString("Warps.Fillerblock.Color");
                 ItemStack is = new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.valueOf(c).getDyeData());
@@ -118,7 +118,7 @@ public class Click_Event implements Listener {
 
 
 
-                for(int i = 1; i < 54; i++){
+                for(int i = 1; i < 45; i++){
 
                     if(plugin.getConfig().contains("Warps." + i)){
                         String name = plugin.getConfig().getString("Warps." + i + ".Name");
@@ -141,7 +141,7 @@ public class Click_Event implements Listener {
 
 
                 ItemStack[] items = warps.getContents();
-                for(int i = 0; i < 54; i++){
+                for(int i = 0; i < 45; i++){
 
                     if((items[i] == null || items[i].getType() == Material.AIR)) {
                         warps.setItem(i, is);
@@ -189,7 +189,7 @@ public class Click_Event implements Listener {
         Player p = (Player) e.getWhoClicked();
         int slot = e.getSlot();
 
-        for(i = 1; i < 54; i++){
+        for(i = 1; i < 45; i++){
             if(plugin.getConfig().contains("Warps." + i)){
                 int compare = plugin.getConfig().getInt("Warps." + i + ".Slot");
 

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 /**
  * Created by luguco on 14.07.2017.
  */
+
 public class Give_Items implements Listener {
     private Main plugin;
     public Give_Items(Main main) {
@@ -23,6 +24,8 @@ public class Give_Items implements Listener {
     @EventHandler
     public void join(PlayerJoinEvent e){
         Player p = e.getPlayer();
+        p.getInventory().clear();
+        p.updateInventory();
 
         ItemStack warp = new ItemStack(Material.getMaterial(plugin.getConfig().getString("Items.Warp.Material")), 1);
         ItemMeta warpmeta = warp.getItemMeta();
@@ -70,7 +73,7 @@ public class Give_Items implements Listener {
                 p.getInventory().setItem(plugin.getConfig().getInt("Items.Hider_all.Slot"), all);
             }
 
-            if(plugin.shieldon.contains(p.getName())){
+       /*     if(plugin.shieldon.contains(p.getName())){
                 ItemStack shieldon = new ItemStack(Material.getMaterial(plugin.getConfig().getString("Items.Shield_on.Material")), 1);
                 ItemMeta shieldonmeta = shieldon.getItemMeta();
                 ArrayList<String> lore5 = new ArrayList<>();
@@ -95,6 +98,7 @@ public class Give_Items implements Listener {
                 }
             }
 
+
             if(p.hasPermission("lobby.silentlobby")){
 
                 ItemStack silent = new ItemStack(Material.getMaterial(plugin.getConfig().getString("Items.Silent.Material")), 1);
@@ -107,7 +111,8 @@ public class Give_Items implements Listener {
 
                 p.getInventory().setItem(plugin.getConfig().getInt("Items.Silent.Slot"), silent);
             }
-        p.updateInventory();
+            */
 
+        p.updateInventory();
     }
 }

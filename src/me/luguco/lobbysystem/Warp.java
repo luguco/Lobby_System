@@ -53,7 +53,7 @@ public class Warp implements CommandExecutor{
 
             String name = args[1];
 
-            for(i = 1; i < 54; i++ ){
+            for(i = 1; i < 45; i++ ){
                 if(!plugin.getConfig().contains("Warps." + i)){
 
                     plugin.getConfig().set("Warps." + i + ".Material", material);
@@ -85,7 +85,7 @@ public class Warp implements CommandExecutor{
 
                 String todelete = args[1];
 
-                for( i2 = 1; i2 < 54; i2++){
+                for( i2 = 1; i2 < 45; i2++){
                     p.sendMessage("check");
                     if(plugin.getConfig().contains("Warps." + i2)){
                         p.sendMessage("got" + i2);
